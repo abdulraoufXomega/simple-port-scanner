@@ -1,21 +1,32 @@
-import socket
+import _socket
 import time
 
+
+# Function to get the protocol name
+def get_protocol_name(port):
+    try:
+        return _socket.getservbyport(port)
+    except:
+        return "Unknown"
+
 # Define the target and port range
-target = input("Enter the target IP address: ")
-port_range = input("Enter the port range (e.g., 1-100): ")
-start_port, end_port = map(int, port_range.split('-'))
+try:
+    target = input("Enter the target IP address: ")
+    port_range = input("Enter the port range (e.g., 1-100): ")
+    start_port, end_port = map(int, port_range.split('-'))
+except ValueError:
+    print("INVALID INPUT!!. Please enter a valid IP address and port range.")
+    exit(1)
 
 # Function to scan a single port
 def scan_port(port):
     try:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(0.5)
+        sock = _socket.socket(_socket.AF_INET, _socket.SOCK_STREAM)
+        sock.settimeout(0.1)
         result = sock.connect_ex((target, port))
         if result == 0:
-            print(f"Port {port}: Open")
-        else:
-            print(f"Port {port}: Closed")
+            protocol = get_protocol_name(port)
+            print(f"Port {port} ({protocol}): Open")
         sock.close()
     except Exception as e:
         print(f"Error scanning port {port}: {e}")
