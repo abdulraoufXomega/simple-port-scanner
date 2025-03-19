@@ -37,10 +37,10 @@ The port scanner uses Python's `socket` library to establish TCP connections wit
 ---
 
 ## Key Components
-1. ### Socket Library: Used to establish TCP connections.
-2. ### Port Range: The user specifies the range of ports to scan.
-3. ### Timeout: A timeout of 0.1 seconds is set to avoid hanging on un responsive ports.
-4. ### Result Analysis: The "connect_ex" method returns '0' if the port is open.
+1. Socket Library: Used to establish TCP connections.
+2. Port Range: The user specifies the range of ports to scan.
+3. Timeout: A timeout of 0.1 seconds is set to avoid hanging on un responsive ports.
+4. Result Analysis: The "connect_ex" method returns '0' if the port is open.
 
 ---
 
